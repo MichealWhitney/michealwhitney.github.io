@@ -2,351 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio - Micheal Whitney</title>
+  <title>Micheal Whitney - Portfolio</title>
 
   <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Devicon CSS -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-  <style>
-    /* ========================================
-       Root Variables for Dark/Light Mode
-       ======================================== */
-    :root {
-      --bg-color: #0f1115;
-      --text-color: #fff;
-      --accent-color: #1E90FF;
-      --secondary-bg: #16181d;
-      --progress-bg: #22252a;
-    }
-
-    /* Light Mode overrides */
-    .light-mode {
-      --bg-color: #ffffff;
-      --text-color: #0f1115;
-      --accent-color: #1E90FF;
-      --secondary-bg: #f1f1f1;
-      --progress-bg: #ddd;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      overflow: hidden;
-    }
-
-    /* Container that holds sidebar and main content */
-    .portfolio-container {
-      display: flex;
-      width: 100%;
-      height: 100vh;
-    }
-
-    /* Theme Toggle Button */
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
-      background: var(--secondary-bg);
-      color: var(--text-color);
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .theme-toggle:hover {
-      background: var(--accent-color);
-      color: var(--bg-color);
-    }
-
-    /* Sidebar (left of page) */
-    .sidebar {
-      width: 30%;
-      min-width: 300px;
-      background: linear-gradient(
-        135deg,
-        var(--secondary-bg) 0%,
-        var(--bg-color) 100%
-      );
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 5rem;
-      position: sticky;
-      top: 0;
-      font-size: 1.15rem;
-      overflow: hidden;
-    }
-
-    .sidebar h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* text under header (fullname) */
-    .sidebar p {
-      font-size: 1.15rem;
-      color: #999;
-      margin-bottom: 1rem;
-    }
-    /* Override for light mode */
-    .light-mode .sidebar p {
-      color: #555;
-    }
-
-    .profile-pic {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: #ccc url('assets/dog_pfp.jpg') center/cover no-repeat;
-      margin-bottom: 1rem;
-      border: 2px solid var(--accent-color);
-      transition: transform 0.3s ease;
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.05);
-    }
-
-    /* nav links in the sidebar */
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      margin-top: 1rem;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -3px;
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-color);
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .social-icons a {
-      color: var(--text-color);
-      font-size: 1.8rem;
-      transition: color 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .social-icons a:hover {
-      color: var(--accent-color);
-    }
-
-    /* main content (right of page) */
-    .main-content {
-      width: 70%;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      padding: 3rem 4rem;
-      position: relative;
-    }
-
-    .section {
-      margin-bottom: 5rem;
-    }
-
-    /* ABOUT ME SECTION */
-    .section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
-      text-align: center;
-      position: relative;
-    }
-    .section h2::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 25%;
-      height: 2px;
-      background-color: var(--accent-color);
-      border-radius: 1px;
-    }
-
-    .section p {
-      line-height: 1.6;
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-    /* SKILLS SECTION */
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .skill-category {
-      text-align: center;
-    }
-    .skill-category h3 {
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-    }
-    .skill-category ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .skill-category li {
-      margin-bottom: 0.3rem;
-      color: var(--text-color);
-    }
-
-    /* PROJECTS SECTION */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      justify-content: center;
-      justify-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .project-card {
-      background-color: var(--secondary-bg);
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 100%;
-      max-width: 300px;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    }
-    .project-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    .project-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent-color);
-      text-align: center;
-    }
-    .project-card p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #bbb;
-      text-align: center;
-    }
-    .light-mode .project-card p {
-      color: #444;
-    }
-    .project-card a {
-      margin-top: auto;
-      text-decoration: none;
-      color: var(--accent-color);
-      font-weight: 500;
-      border: 1px solid var(--accent-color);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      text-align: center;
-      transition: background-color 0.3s ease;
-      align-self: center;
-    }
-    .project-card a:hover {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-    }
-
-    /* Scrollbar styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--secondary-bg);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-color);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3cb292;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .portfolio-container {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        position: relative;
-        height: auto;
-        padding-top: 6rem;
-      }
-      .main-content {
-        width: 100%;
-        height: auto;
-        overflow: visible;
-      }
-      .theme-toggle {
-        position: fixed;
-      }
-    }
-  </style>
 </head>
 <body>
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="themeToggle">
-    <img src="assets/dark_mode.svg" alt="Dark Mode Icon" id="themeIcon" style="width: 24px; height: 24px;">
+    <img src="./assets/icons/dark_mode.svg" alt="Dark Mode Icon" id="themeIcon" style="width: 24px; height: 24px;">
   </button>
-
 
   <div class="portfolio-container">
     <!-- Sidebar -->
     <div class="sidebar">
       <h1>Micheal Whitney</h1>
-      <p>Computer Science Graduate from University of Alberta</p>
+      <p>Software Developer</p>
       <div class="profile-pic"></div>
 
       <nav class="nav-links">
@@ -375,11 +51,16 @@
       <section class="section" id="about">
         <h2>About Me</h2>
         <p>
-          I recently completed my Bachelor of Science in Computing Science at the University of Alberta. I’m eager to prove myself in the professional world and to continue expanding my skill set through 
-          hands-on experience and continuous learning.
+          Hey! I'm Micheal, a full-stack developer who’s especially excited about building with large language models. I have found that I enjoy integrating API's like OpenAI and Claude to create smart and responsive applications.
         </p>
         <p>
-          My ultimate goal is to keep pushing my boundaries—broadening my knowledge and refining my skills—so I can build robust, engaging, and scalable applications that truly make a difference in people’s lives. To me, technology is the ultimate tool for bringing ideas to life. By blending creativity with a solid technical foundation, I hope to help shape the future of software development, one project at a time.
+          Right now, I’m a remote software developer at Vest Capital, where I’m building an internal tool that pulls in data from various sources using Playwright and BeautifulSoup, then layers on LLM analysis to make that information easier to work with and understand. It’s been my favorite project to date, also because I get to work alongside some great people.
+        </p>
+        <p>
+          Outside of work recently, I’ve been diving deeper into cloud services like AWS and Azure to round out my backend skills. I currently have practical experience with S3, and am looking to expand my understanding on how to efficently use these cloud services. 
+        </p>
+        <p>
+          In my spare time, im usually attending Muay Thai classes, reading, or scoring some naneinf's in Balatro.
         </p>
       </section>
 
@@ -414,11 +95,20 @@
             <h3>Tools</h3>
             <ul>
               <li>GitHub</li>
-              <li>Firebase</li>
+              <li>Google Cloud Platform</li>
+              <li>Amazon Web Service (S3)</li>
+              <li>MySQL</li>
               <li>MongoDB</li>
               <li>Postman</li>
               <li>Android Studio</li>
               <li>Unity</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>APIs</h3>
+            <ul>
+              <li>OpenAI API</li>
+              <li>Anthropic Claude API</li>
             </ul>
           </div>
           <div class="skill-category">
@@ -435,11 +125,21 @@
       <section class="section" id="projects">
         <h2>Projects</h2>
         <p>
-          Here are some of my favorite projects that I've worked on:
+          Here are some selected projects that I've worked on:
         </p>
         <div class="projects-grid">
           <div class="project-card">
-            <img src="assets/wizard2.png" alt="Project One Image">
+            <img src="./assets/images/property_explorer.png" alt="Project One Image">
+            <h3>Property Analyzer</h3>
+            <p>
+              A full-stack internal tool using Python, Node.js, JavaScript and MySQL. Integrates web scraping, AI (Claude), and a clean dashboard UI. Built for analyzing and summarizing real estate data across property sites.
+            </p>
+            <a href="#" onclick="return false;" class="disabled-link">
+              Video Demo Coming Soon
+            </a>
+          </div>
+          <div class="project-card">
+            <img src="./assets/images/wizard2.png" alt="Project Two Image">
             <h3>LineupWizard.gg</h3>
             <p>
               A solo developed full-stack web application using Node.js, React, and MongoDB. 
@@ -450,7 +150,17 @@
             </a>
           </div>
           <div class="project-card">
-            <img src="assets/ResumeBuilder.png" alt="Project Two Image">
+            <img src="./assets/images/brainrot_creator.png" alt="Project Three Image">
+            <h3>Automated Shortform Content Editor</h3>
+            <p>
+              An automated video editing pipeline using Python, WhisperX, and FFmpeg. Automates captioning, styling, and formatting of short form clips for TikTok, YouTube shorts, etc.
+            </p>
+            <a href="https://www.youtube.com/watch?v=dJJpP6ZkaX4" target="_blank" rel="noopener noreferrer">
+              Watch Video Demonstration
+            </a>
+          </div>
+          <div class="project-card">
+            <img src="./assets/images/ResumeBuilder.png" alt="Project Four Image">
             <h3>AI Resume Builder</h3>
             <p>
               A web-app that uses AI to enhance an uploaded resume to match industry standards. Interacts With OpenAI's API. Uses multiple PDF libraries to parse/construct the files.
@@ -459,61 +169,12 @@
               View on GitHub
             </a>
           </div>
-          <div class="project-card">
-            <img src="assets/reviewboard.png" alt="Project Three Image">
-            <h3>ReviewBoard</h3>
-            <p>
-              A full-stack web application for writing, viewing, and editing reviews on various forms of media. Includes interactions between an SQL database and a Node.js backend.
-            </p>
-            <a href="https://github.com/MichealWhitney/ReviewBoard" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-            </a>
-          </div>
+
         </div>
       </section>
     </div>
   </div>
 
-  <script>
-    // Smooth scrolling for anchor links
-    const navLinks = document.querySelectorAll(".nav-links a");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    });
-
-   // Dark/Light Mode Toggle
-    const themeToggleBtn = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
-    const body = document.body;
-
-    // ensures that the dark mode icon is white on page load
-    if (!body.classList.contains("light-mode")) {
-      themeIcon.style.filter = "brightness(0) invert(1)";
-    }
-
-    themeToggleBtn.addEventListener("click", () => {
-      body.classList.toggle("light-mode");
-      
-      if (body.classList.contains("light-mode")) {
-        // Light mode active
-        themeIcon.src = "assets/light_mode.svg";
-        themeIcon.alt = "Light Mode Icon";
-        themeIcon.style.filter = "none";
-      } else {
-        // Dark mode active
-        themeIcon.src = "assets/dark_mode.svg";
-        themeIcon.alt = "Dark Mode Icon";
-        themeIcon.style.filter = "brightness(0) invert(1)";
-      }
-    });
-
-  </script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>

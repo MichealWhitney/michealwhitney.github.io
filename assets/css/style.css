@@ -1,0 +1,319 @@
+:root {
+  --bg-color: #0f1115;
+  --text-color: #fff;
+  --accent-color: #1E90FF;
+  --secondary-bg: #16181d;
+  --progress-bg: #22252a;
+}
+
+/* Light Mode overrides */
+.light-mode {
+  --bg-color: #ffffff;
+  --text-color: #0f1115;
+  --accent-color: #1E90FF;
+  --secondary-bg: #e2e2e2;
+  --progress-bg: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+/* Container that holds sidebar and main content */
+.portfolio-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+  background: var(--secondary-bg);
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.theme-toggle:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+}
+
+/* Sidebar (left of page) */
+.sidebar {
+  width: 30%;
+  min-width: 300px;
+  background: rgba(22, 24, 29, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem;
+  position: sticky;
+  top: 0;
+  font-size: 1.15rem;
+  overflow: hidden;
+  border-right: 1px solid #ffffff1a;
+}
+
+/* Light mode support for sidebar */
+.light-mode .sidebar {
+  background: #e2e2e2; /* translucent light background */
+  border-right: 1px solid rgba(0, 0, 0, 0.1); /* subtle dark border */
+}
+
+.sidebar h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* text under header (fullname) */
+.sidebar p {
+  font-size: 1.15rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+/* Override for light mode */
+.light-mode .sidebar p {
+  color: #555;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #ccc url('../images/dog_pfp.jpg') center/cover no-repeat;
+  margin-bottom: 1rem;
+  border: 2px solid var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+}
+
+/* nav links in the sidebar */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.social-icons a {
+  color: var(--text-color);
+  font-size: 1.8rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+.social-icons a:hover {
+  color: var(--accent-color);
+}
+
+/* main content (right of page) */
+.main-content {
+  width: 70%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 3rem 4rem;
+  position: relative;
+}
+
+.section {
+  margin-bottom: 5rem;
+}
+
+/* ABOUT ME SECTION */
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  text-align: center;
+  position: relative;
+}
+.section h2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25%;
+  height: 2px;
+  background-color: var(--accent-color);
+  border-radius: 1px;
+}
+
+.section p {
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+/* SKILLS SECTION */
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.skill-category {
+  text-align: center;
+}
+.skill-category h3 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.skill-category li {
+  margin-bottom: 0.3rem;
+  color: var(--text-color);
+}
+
+/* PROJECTS SECTION */
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* This centers items even if the last row is incomplete */
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: var(--secondary-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.project-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+  text-align: center;
+}
+.project-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #bbb;
+  text-align: center;
+}
+.light-mode .project-card p {
+  color: #444;
+}
+.project-card a {
+  margin-top: auto;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 500;
+  border: 1px solid var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  align-self: center;
+}
+.project-card a:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--secondary-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3cb292;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .portfolio-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+    padding-top: 6rem;
+  }
+  .main-content {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .theme-toggle {
+    position: fixed;
+  }
+}
