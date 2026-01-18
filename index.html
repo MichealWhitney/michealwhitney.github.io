@@ -22,7 +22,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <h1>Micheal Whitney</h1>
-      <p>Software Developer</p>
+      <p id="rotating-text">Software Developer</p>
       <div class="profile-pic"></div>
 
       <nav class="nav-links">
@@ -51,16 +51,15 @@
       <section class="section" id="about">
         <h2>About Me</h2>
         <p>
-          Hey! I'm Micheal, a full-stack developer who’s especially excited about building with large language models. I have found that I enjoy integrating API's like OpenAI and Claude to create smart and responsive applications.
+          Hey! I'm Micheal, a full-stack developer who’s especially excited about building with large language models and AI technologies.
         </p>
         <p>
-          Right now, I’m a remote software developer at Vest Capital, where I’m building an internal tool that pulls in data from various sources using Playwright and BeautifulSoup, then layers on LLM analysis to make that information easier to work with and understand. It’s been my favorite project to date, also because I get to work alongside some great people.
+          Right now, I'm a software developer at <a href="https://totallife.com/" target="_blank" rel="noopener noreferrer">Total Life</a> which is a startup based in Edmonton Alberta, where we are building an online telehealth platform from the ground up. I work across the stack which involves anything from creating efficient backend services that integrate with industry API's, to crafting intuitive front-end experiences for several thousand users.
+        <p>
+          Outside of work, I really enjoy using LLM's and AI tools to build fun side projects that either automate tasks or explore some of my silly ideas. I'm always looking to learn more about the best applications of AI and how it can be applied to solve real-world problems.
         </p>
         <p>
-          Outside of work recently, I’ve been diving deeper into cloud services like AWS and Azure to round out my backend skills. I currently have practical experience with S3, and am looking to expand my understanding on how to efficently use these cloud services. 
-        </p>
-        <p>
-          In my spare time, im usually attending Muay Thai classes, reading, or scoring some naneinf's in Balatro.
+          In my spare time, I enjoy attending martial arts classes (Muay Thai has been a fun one), playing video games, and reading! The most recent story i've completed was "Vagabond", which was an amazing manga about the life of a samurai in the late 16th century. It touches on themes of self-improvement, discipline, and the pursuit of mastery, which I found really inspiring and interesting to follow.
         </p>
       </section>
 
@@ -68,13 +67,14 @@
       <section class="section" id="skills">
         <h2>Skills</h2>
         <p>
-          Throughout my studies and personal projects, I have developed a range of skills spanning multiple areas:
+          Throughout my experience, studies and personal projects, I have developed a range of skills spanning multiple areas:
         </p>
         <div class="skills-list">
           <div class="skill-category">
             <h3>Languages</h3>
             <ul>
               <li>JavaScript</li>
+              <li>GoLang</li>
               <li>Python</li>
               <li>Java</li>
               <li>C#</li>
@@ -87,20 +87,25 @@
             <h3>Frameworks</h3>
             <ul>
               <li>React</li>
+              <li>Vite</li>
               <li>Node.js</li>
               <li>Express.js</li>
+              <li>Bootstrap</li>
+              <li>Chart.js</li>
+              <li>PlayWright (web automation)</li>
             </ul>
           </div>
           <div class="skill-category">
             <h3>Tools</h3>
             <ul>
-              <li>GitHub</li>
               <li>Google Cloud Platform</li>
-              <li>Amazon Web Service (S3)</li>
+              <li>Amazon Web Service</li>
               <li>MySQL</li>
+              <li>PostgreSQL</li>
               <li>MongoDB</li>
               <li>Postman</li>
               <li>Android Studio</li>
+              <li>GitHub</li>
               <li>Unity</li>
             </ul>
           </div>
@@ -109,6 +114,8 @@
             <ul>
               <li>OpenAI API</li>
               <li>Anthropic Claude API</li>
+              <li>pVerify (Healthcare Insurance)</li>
+              <li>Healthie (Healthcare EMR)</li>
             </ul>
           </div>
           <div class="skill-category">
@@ -127,49 +134,28 @@
         <p>
           Here are some selected projects that I've worked on:
         </p>
-        <div class="projects-grid">
-          <div class="project-card">
-            <img src="./assets/images/property_explorer.png" alt="Project One Image">
-            <h3>Property Analyzer</h3>
-            <p>
-              A full-stack internal tool using Python, Node.js, JavaScript and MySQL. Integrates web scraping, AI (Claude), and a clean dashboard UI. Built for analyzing and summarizing real estate data across property sites.
-            </p>
-            <a href="#" onclick="return false;" class="disabled-link">
-              Video Demo Coming Soon
-            </a>
+        <div class="projects-carousel">
+          <button class="carousel-nav carousel-prev" aria-label="Previous project">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="carousel-container">
+            <div class="carousel-slides" id="projectSlides">
+              <!-- Projects will be dynamically inserted here -->
+            </div>
           </div>
-          <div class="project-card">
-            <img src="./assets/images/wizard2.png" alt="Project Two Image">
-            <h3>LineupWizard.gg</h3>
-            <p>
-              A solo developed full-stack web application using Node.js, React, and MongoDB. 
-              Optimized extensively to reduce server usage, streamlined UI. Tool for learning strategies in the popular video game VALORANT.
-            </p>
-            <a href="https://lineupwizard.gg/valorant" target="_blank" rel="noopener noreferrer">
-              View Website
-            </a>
-          </div>
-          <div class="project-card">
-            <img src="./assets/images/brainrot_creator.png" alt="Project Three Image">
-            <h3>Automated Shortform Content Editor</h3>
-            <p>
-              An automated video editing pipeline using Python, WhisperX, and FFmpeg. Automates captioning, styling, and formatting of short form clips for TikTok, YouTube shorts, etc.
-            </p>
-            <a href="https://www.youtube.com/watch?v=dJJpP6ZkaX4" target="_blank" rel="noopener noreferrer">
-              Watch Video Demonstration
-            </a>
-          </div>
-          <div class="project-card">
-            <img src="./assets/images/ResumeBuilder.png" alt="Project Four Image">
-            <h3>AI Resume Builder</h3>
-            <p>
-              A web-app that uses AI to enhance an uploaded resume to match industry standards. Interacts With OpenAI's API. Uses multiple PDF libraries to parse/construct the files.
-            </p>
-            <a href="https://github.com/MichealWhitney/AI-Resume-Enhancer" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-            </a>
-          </div>
-
+          
+          <button class="carousel-nav carousel-next" aria-label="Next project">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="carousel-dots" id="carouselDots">
+          <!-- Dots will be dynamically inserted here -->
         </div>
       </section>
     </div>
