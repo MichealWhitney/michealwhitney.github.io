@@ -44,18 +44,14 @@ profileImages.forEach(src => {
 
 function rotateProfilePic() {
   const nextImageIndex = (currentImageIndex + 1) % profileImages.length;
-  const nextImage = new Image();
-  nextImage.src = profileImages[nextImageIndex];
   
-  nextImage.onload = () => {
-    profilePic.style.opacity = "0";
-    
-    setTimeout(() => {
-      currentImageIndex = nextImageIndex;
-      profilePic.style.backgroundImage = `url('${profileImages[currentImageIndex]}')`;
-      profilePic.style.opacity = "1";
-    }, 500);
-  };
+  profilePic.style.opacity = "0";
+  
+  setTimeout(() => {
+    currentImageIndex = nextImageIndex;
+    profilePic.style.backgroundImage = `url('${profileImages[currentImageIndex]}')`;
+    profilePic.style.opacity = "1";
+  }, 500);
 }
 
 // Start profile picture rotation
