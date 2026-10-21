@@ -351,6 +351,20 @@ a:hover {
 
 .project-cta:hover {
   background-color: #0052a3;
+  color: white;
+  text-decoration: none;
+}
+
+/* Greyed-out CTA for projects that are offline or not ready yet */
+.project-cta.disabled,
+.project-cta.disabled:hover {
+  background-color: var(--progress-bg);
+  color: #888;
+  cursor: not-allowed;
+}
+
+.light-mode .project-cta.disabled {
+  color: #666;
 }
 
 .carousel-nav {
@@ -430,19 +444,28 @@ a:hover {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  /* Let the whole page scroll instead of the desktop's fixed-height panes */
+  html,
+  body {
+    height: auto;
+    overflow: auto;
+  }
   .portfolio-container {
     flex-direction: column;
+    height: auto;
   }
   .sidebar {
     width: 100%;
     position: relative;
     height: auto;
     padding-top: 6rem;
+    padding-bottom: 2rem;
   }
   .main-content {
     width: 100%;
     height: auto;
     overflow: visible;
+    padding: 2rem 1rem;
   }
   .theme-toggle {
     position: fixed;
@@ -455,7 +478,7 @@ a:hover {
   }
   
   .project-slide {
-    padding: 1.5rem;
+    padding: 1rem;
   }
   
   .project-details h3 {

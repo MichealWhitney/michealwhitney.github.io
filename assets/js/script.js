@@ -5,7 +5,7 @@ const titles = [
   "Computer Scientist",
   "AI Enthusiast",
   "Problem Solver",
-  "Martial Arts Enjoyer"
+  "Dota 2 Enjoyer"
 ];
 let currentIndex = 0;
 
@@ -36,15 +36,26 @@ const profileImages = [
 ];
 let currentImageIndex = 0;
 
-// Preload images to prevent grey flash
-profileImages.forEach(src => {
+// Preload images to prevent grey flash, and track which ones actually loaded
+const loadedImages = new Set();
+profileImages.forEach((src, index) => {
   const img = new Image();
+  img.onload = () => loadedImages.add(index);
   img.src = src;
 });
 
 function rotateProfilePic() {
-  const nextImageIndex = (currentImageIndex + 1) % profileImages.length;
-  
+  // Only rotate to an image that has loaded, so a missing or slow image never leaves the circle empty
+  let nextImageIndex = currentImageIndex;
+  for (let step = 1; step < profileImages.length; step++) {
+    const candidate = (currentImageIndex + step) % profileImages.length;
+    if (loadedImages.has(candidate)) {
+      nextImageIndex = candidate;
+      break;
+    }
+  }
+  if (nextImageIndex === currentImageIndex) return;
+
   profilePic.style.opacity = "0";
   
   setTimeout(() => {
@@ -120,6 +131,47 @@ const projectsData = [
     ctaDisabled: true
   },
   {
+    title: "Libertalia",
+    image: "./assets/images/libertalia.gif",
+    tableData: {
+      "Technology": "Full-Stack Web App, AI",
+      "Platform": "Self-Hosted Web App",
+      "Stack": "GoLang, Gin, HTML, CSS",
+      "Year": "2026"
+    },
+    bulletPoints: [
+      "AI estimates meal macros from food photos",
+      "AI screens CARFAX reports against custom rules",
+      "AI scores job postings against my resume",
+      "Built with GoLang, Gin, HTML & CSS"
+    ],
+    description: "A personal Swiss Army knife that I architected and self-host. It's a modular full-stack web app that combines a variety of tools (nutrition, finance, job-search, and a used-car finder) behind one authenticated dashboard, with AI integrated into several of them.",
+    ctaText: "Watch Video Walkthrough",
+    ctaLink: "https://www.youtube.com/watch?v=hsfHFD_OMFo",
+    ctaDisabled: false
+  },
+  {
+    title: "LineupWizard.gg",
+    image: "./assets/images/wizard2.png",
+    tableData: {
+      "Technology": "Full-Stack Web App",
+      "Platform": "Web (Desktop & Mobile)",
+      "Stack": "Node.js, React, MongoDB",
+      "Status": "Offline",
+      "Year": "2023"
+    },
+    bulletPoints: [
+      "Solo developed full-stack application",
+      "Optimized for reduced server usage",
+      "Streamlined UI/UX design",
+      "Strategy learning tool for VALORANT players"
+    ],
+    description: "My first 'real' project, built in 2023. A solo developed full-stack web application using Node.js, React, and MongoDB. Optimized extensively to reduce server usage, streamlined UI. Tool for learning strategies in the popular video game VALORANT.",
+    ctaText: "Website Offline",
+    ctaLink: "#",
+    ctaDisabled: true
+  },
+  {
     title: "EDM Oilers Stat Dashboard (Demo)",
     image: "./assets/images/oilers.png",
     tableData: {
@@ -131,76 +183,13 @@ const projectsData = [
     },
     bulletPoints: [
       "Interactive data visualization dashboard",
-      "Dynamically Plot roster statistics against each other",
+      "Dynamically plot roster statistics against each other",
       "Quick comparison of player performance metrics",
       "Built in React + Vite"
     ],
-    description: "A dashboard to view and analyze data for the Edmonton Oilers 2025-26 roster. The frontend delivers a quick way to plot a large dataset against each other, giving users the ability to choose which statistics are displayed on the X and Y axes to allow for detailedd analysis.",
+    description: "A dashboard to view and analyze data for the Edmonton Oilers 2025-26 roster. The frontend delivers a quick way to plot a large dataset against each other, giving users the ability to choose which statistics are displayed on the X and Y axes to allow for detailed analysis.",
     ctaText: "View Website",
     ctaLink: "https://oilers-resume-project.web.app/",
-    ctaDisabled: false
-  },
-  {
-    title: "LineupWizard.gg",
-    image: "./assets/images/wizard2.png",
-    tableData: {
-      "Technology": "Full-Stack Web App",
-      "Platform": "Web (Desktop & Mobile)",
-      "Stack": "Node.js, React, MongoDB",
-      "Users": "Active Community",
-      "Year": "2023"
-    },
-    bulletPoints: [
-      "Solo developed full-stack application",
-      "Optimized for reduced server usage",
-      "Streamlined UI/UX design",
-      "Strategy learning tool for VALORANT players"
-    ],
-    description: "My first 'real' project. A solo developed full-stack web application using Node.js, React, and MongoDB. Optimized extensively to reduce server usage, streamlined UI. Tool for learning strategies in the popular video game VALORANT.",
-    ctaText: "View Website",
-    ctaLink: "https://lineupwizard.gg/valorant",
-    ctaDisabled: false
-  },
-  {
-    title: "Automated Shortform Content Editor",
-    image: "./assets/images/brainrot_creator.png",
-    tableData: {
-      "Technology": "Automation, AI",
-      "Platform": "Python Pipeline",
-      "Stack": "Python, WhisperX, FFmpeg",
-      "Output": "TikTok, YouTube Shorts",
-      "Year": "2024"
-    },
-    bulletPoints: [
-      "Automated video editing pipeline",
-      "AI-powered transcription with WhisperX",
-      "Auto-generated captions and styling",
-      "Optimized for short-form platforms"
-    ],
-    description: "An automated video editing pipeline using Python, WhisperX, and FFmpeg. Automates captioning, styling, and formatting of short form clips for TikTok, YouTube shorts, etc.",
-    ctaText: "Watch Video Demonstration",
-    ctaLink: "https://www.youtube.com/watch?v=dJJpP6ZkaX4",
-    ctaDisabled: false
-  },
-  {
-    title: "AI Resume Builder",
-    image: "./assets/images/ResumeBuilder.png",
-    tableData: {
-      "Technology": "AI Enhancement",
-      "Platform": "Web Application",
-      "Stack": "Python, OpenAI API",
-      "Features": "PDF Parsing & Generation",
-      "Year": "2024"
-    },
-    bulletPoints: [
-      "AI-powered resume enhancement",
-      "Matches industry standards",
-      "OpenAI API integration",
-      "Advanced PDF parsing and construction"
-    ],
-    description: "A web-app that uses AI to enhance an uploaded resume to match industry standards. Interacts with OpenAI's API. Uses multiple PDF libraries to parse/construct the files.",
-    ctaText: "View on GitHub",
-    ctaLink: "https://github.com/MichealWhitney/AI-Resume-Enhancer",
     ctaDisabled: false
   }
 ];
@@ -224,10 +213,11 @@ function renderProjects() {
       .map(point => `<li>${point}</li>`)
       .join("");
     
-    const ctaAttributes = project.ctaDisabled 
-      ? 'onclick="return false;"' 
-      : 'target="_blank" rel="noopener noreferrer"';
-    
+    // Disabled CTAs render as a greyed-out label instead of a link
+    const cta = project.ctaDisabled
+      ? `<span class="project-cta disabled" aria-disabled="true">${project.ctaText}</span>`
+      : `<a href="${project.ctaLink}" class="project-cta" target="_blank" rel="noopener noreferrer">${project.ctaText}</a>`;
+
     slide.innerHTML = `
       <div class="project-content">
         <div class="project-image">
@@ -239,9 +229,7 @@ function renderProjects() {
           <ul>
             ${bulletPoints}
           </ul>
-          <a href="${project.ctaLink}" class="project-cta" ${ctaAttributes}>
-            ${project.ctaText}
-          </a>
+          ${cta}
         </div>
       </div>
     `;
@@ -288,6 +276,28 @@ renderProjects();
 // Event listeners for navigation
 document.querySelector(".carousel-next").addEventListener("click", nextSlide);
 document.querySelector(".carousel-prev").addEventListener("click", prevSlide);
+
+// Swipe navigation for touch screens (mostly-vertical swipes are ignored so page scrolling still works)
+const carouselContainer = document.querySelector(".carousel-container");
+let touchStartX = 0;
+let touchStartY = 0;
+
+carouselContainer.addEventListener("touchstart", (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+carouselContainer.addEventListener("touchend", (e) => {
+  const deltaX = e.changedTouches[0].clientX - touchStartX;
+  const deltaY = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (deltaX < 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  }
+});
 
 // Optional: Auto-advance carousel
 // setInterval(nextSlide, 8000);
